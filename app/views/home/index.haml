@@ -1,0 +1,16 @@
+#page
+  %h2 Upload the website responses
+  - form_tag({:action => 'website'}, {:multipart => true}) do
+    = file_field_tag('spreadsheet')
+    %br
+    = submit_tag 'Parse data'
+  %h2 Upload the address responses
+  - form_tag({:action => 'address'}, {:multipart => true}) do
+    = file_field_tag('spreadsheet')
+    %br
+    = submit_tag 'Parse data'
+  %h2 Upload the telephone responses
+  - form_tag({:action => 'phone'}, {:multipart => true}) do
+    = file_field_tag('spreadsheet')
+    %br
+    = submit_tag 'Parse data'

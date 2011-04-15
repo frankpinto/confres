@@ -1,0 +1,32 @@
+#header {
+  text-align: center;
+}
+
+#page_wrapper {
+  width: 1000px;
+}
+
+#page {
+  width: 900px;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 0 auto 0 auto;
+}
+
+div.table {
+  width: 800px;
+  margin: 0 auto 0 auto;
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+table {width: 100%;}
+
+div.explanation {
+  margin: 5px 0px 5px 0px;
+}
+
+h2.table_heading {
+  margin-top: 0px;
+}

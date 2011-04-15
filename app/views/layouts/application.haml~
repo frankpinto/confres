@@ -1,0 +1,21 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:"http-equiv" => 'Content-Type', :content => 'text/html; charset=UTF-8'}
+    %title Conflict Resolution
+    = stylesheet_link_tag 'style'
+    = stylesheet_link_tag 'demo_page'
+    = stylesheet_link_tag 'demo_table'
+    = stylesheet_link_tag 'demo_table_jui'
+    = stylesheet_link_tag 'ColVis'
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'datatables'
+    = javascript_include_tag 'colvis'
+    = javascript_include_tag 'application'
+  %body
+    #header
+      %h1.title Conflict Resolution
+    #page_wrapper
+      = yield
+    #footer
+
