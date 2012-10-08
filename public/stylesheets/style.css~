@@ -17,7 +17,7 @@ div.table {
   width: 800px;
   margin: 0 auto 0 auto;
   height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: auto;
 }
 

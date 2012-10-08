@@ -3,32 +3,53 @@ require 'csv'
 
 class HomeController < ApplicationController
   def index
+    @spreadsheet = Datasheet.new
   end
 
   def website
-    f = save_file
-    @csv = CSV.read(f.path)# do |row|
-    #end
+    if request.post?
+      spreadsheet = Datasheet.first(:conditions => {:file_file_name => params[:spreadsheet][:file].original_filename})
+      spreadsheet = Datasheet.create(params[:spreadsheet]) if spreadsheet.nil?
+    else
+      spreadsheet = Datasheet.first(:order => 'updated_at DESC')
+    end
+    @conflicted = CSV.parse ''
+    unless spreadsheet.nil?
+      file = open_file spreadsheet
+      @conflicted = CSV.parse(file.gets nil)
+      column_filter @conflicted
+    end
+    @resolved = CSV.parse ''
+    @headings = @conflicted.empty? ? [] : @conflicted.delete_at(0)
   end
 
   def address
-    f = save_file
   end
 
   def phone
-    f = save_file
   end
 
   def update
   end
 
   private
-  def save_file
-    tempfile = params[:spreadsheet]
-    f = File.open('spreadsheets/' + tempfile.original_filename, 'w')
-    f.write(tempfile.gets(nil))
-    f.rewind
-    tempfile.close
+  def open_file spreadsheet
+    f = File.open(spreadsheet.file.path)
     return f
+  end
+
+  def column_filter spreadsheet
+    columns_to_keep = ['answer', 'description', 'input', 'title']
+    indices = []
+    spreadsheet[0].select! do |elem|
+      columns_to_keep.each_index do |i| 
+        c = columns_to_keep[i]
+        unless (elem =~ /#{c}/i).nil?
+          indices << i
+          break 
+        end
+      end
+    end
+    spreadsheet.collect! {|row| row = indices.collect {|i| row[i]}}
   end
 end

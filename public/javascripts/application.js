@@ -11,21 +11,22 @@ $(document).ready(function() {
                     $(this.nTr).removeClass('row_selected');
             });
             $(event.target.parentNode).addClass('row_selected');
-            var anSelected = fnGetSelected( oTable );
-            string = ''
+            var anSelected = fnGetSelected(oTable);
             data = oTable.fnGetData(anSelected[0]);
-            row = oTable.fnDeleteRow( anSelected[0] );
+            row = oTable.fnDeleteRow(anSelected[0]);
 
             rTable.fnAddData(data);
     });
     
     /* Init the table */
-    oTable = $('#datatable').dataTable();
+    oTable = $('#datatable').dataTable({
+      "sDom": 'C<"clear">lfrtip'
+      });
     rTable = $('#restable').dataTable();
 });
 
 /* Get the rows which are currently selected */
-function fnGetSelected( oTableLocal )
+function fnGetSelected(oTableLocal)
 {
         var aReturn = new Array();
         var aTrs = oTableLocal.fnGetNodes();

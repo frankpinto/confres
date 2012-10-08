@@ -4,7 +4,7 @@
     %table#datatable.spreadsheet
       %thead
         %tr#clickable
-          - @csv[0].each do |cell|
+          - @headings.each do |cell|
             %th=cell
       %tbody
         - @csv.each do |row|
@@ -21,11 +21,10 @@
     %table#restable.spreadsheet
       %thead
         %tr#clickable
-          - @csv[0].each do |cell|
+          - @headings.each do |cell|
             %th=cell
       %tbody
       - @resolved.each do |row|
         %tr#clickable
           - row.each do |cell|
-            %td=cell
             %td=cell

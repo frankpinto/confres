@@ -12,24 +12,21 @@ $(document).ready(function() {
             });
             $(event.target.parentNode).addClass('row_selected');
             var anSelected = fnGetSelected( oTable );
-            string = ''
-            for (attr in anSelected[0])
-              string += attr + "\n";
             data = oTable.fnGetData(anSelected[0]);
-            row = oTable.fnDeleteRow( anSelected[0] );
-            //alert(string);
+            row = oTable.fnDeleteRow(anSelected[0]);
 
             rTable.fnAddData(data);
-            rTable.fnAddData(['hello'])
     });
     
     /* Init the table */
-    oTable = $('#datatable').dataTable();
+    oTable = $('#datatable').dataTable({
+      "sDom": 'C<"clear">lfrtip'
+      });
     rTable = $('#restable').dataTable();
 });
 
 /* Get the rows which are currently selected */
-function fnGetSelected( oTableLocal )
+function fnGetSelected(oTableLocal)
 {
         var aReturn = new Array();
         var aTrs = oTableLocal.fnGetNodes();

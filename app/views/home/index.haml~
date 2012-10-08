@@ -1,7 +1,7 @@
 #page
   %h2 Upload the website responses
-  - form_tag({:action => 'website'}, {:multipart => true}) do
-    = file_field_tag('spreadsheet')
+  - form_for :spreadsheet, :url => {:action => 'website'}, :html => {:multipart => true} do |f|
+    = f.file_field :spreadsheet
     %br
     = submit_tag 'Parse data'
   %h2 Upload the address responses
@@ -10,7 +10,7 @@
     %br
     = submit_tag 'Parse data'
   %h2 Upload the telephone responses
-  - form_tag({:action => 'telephone'}, {:multipart => true}) do
+  - form_tag({:action => 'phone'}, {:multipart => true}) do
     = file_field_tag('spreadsheet')
     %br
     = submit_tag 'Parse data'
